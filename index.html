@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+/* Custom styling for the SweetAlert popup */
+.swal2-popup-custom {
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Extra padding */
+    backdrop-filter: blur(10px); /* Adds blur effect to the background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for the popup */
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobiTechRadius</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.js"></script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+<body class="font-sans antialiased text-gray-900 bg-cover bg-center font-inter" style="background-image: url('peakpx.jpg');">
+    <!-- Main Content -->
+    <!-- Main Content -->
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-6">
+        <div class="max-h-34 relative mx-auto mt-4 flex max-w-lg flex-1 items-center justify-center overflow-hidden shadow-lg rounded-lg">
+            <!-- text start -->
+            <div class="text-center">
+                <div class="relative flex flex-col items-center p-6 sm:max-w-xl bg-gray-900 bg-opacity-90 rounded-lg">
+                    <!-- Title -->
+                    <h1 class="mb-4 text-center text-2xl font-extrabold text-white sm:text-xl md:mb-2">
+                        <strong>MobiTechRadius HOTSPOT LOGIN</strong>
+                    </h1>
+                    <!-- Instructions without numbering -->
+                    <ul class="text-base text-center text-gray-300 mb-4 list-none leading-relaxed">
+                        <li>Click on your preferred package.</li>
+                        <li>Enter your Mpesa number.</li>
+                        <li>Enter your M-Pesa PIN.</li>
+                        <li>Do not leave the page while getting authentication.</li>
+                    </ul>
+                    <!-- Contact Information -->
+                    <p class="mb-4 text-center text-lg font-medium text-gray-300 sm:text-lg md:mb-1 md:text-xl">
+                        Customer Care: <span class="text-green-400">0111567026</span>
+                    </p>
+                </div>
+            </div>
+            <!-- text end -->
+        </div>
+    </div>
+<div class="py-2 sm:py-4 lg:py-4">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-4">
+        <div class="mx-auto max-w-lg">
+            <div class="flex flex-col gap-4">
+                <button type="button" class="flex items-center justify-center gap-2 rounded-lg bg-black bg-opacity-70 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-green-300 transition duration-100 hover:bg-black hover:bg-opacity-80 focus-visible:ring active:bg-black active:bg-opacity-90 md:text-base" onclick="redeemVoucher()">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                    Click here to Redeem Voucher
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="py-2 sm:py-4 lg:py-6">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+            <div class="mx-auto max-w-lg grid grid-cols-3 sm:grid-cols-3 gap-1 p-1" id="cards-container">
+            </div>
+        </div>
+    </div>
+<div class="container mx-auto px-4 mb-4">
+    <!-- Container with a black transparent background -->
+    <div class="max-w-md mx-auto bg-black bg-opacity-50 rounded-lg overflow-hidden shadow-md">
+        <div class="p-6">
+            <!-- White text color -->
+            <h3 class="text-2xl font-semibold text-white mb-6 text-center">Cash Login</h3>
+            <form id="loginForm" class="form" name="login" action="$(link-login-only)" method="post" $(if chap-id)onSubmit="return doLogin()" $(endif)>
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+                <div class="mb-4">
+                    <label class="block text-white text-sm font-bold mb-2" for="username">Account Number</label>
+                    <input id="usernameInput" name="username" type="text" value="" placeholder="e.g 254712345678" class="w-full rounded-lg border bg-gray-700 px-3 py-2 text-white outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <button id="submitBtn" class="w-full mt-3 flex items-center justify-center gap-2 rounded-lg bg-green-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-green-600 focus-visible:ring active:bg-green-700 md:text-base" type="button" onclick="submitLogin()">
+                       Reconnect
+                    </button>
+                </div>
+                <input type="hidden" name="password" value="1234">
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- Separate section with another black transparent background for Mpesa Code -->    <div class="max-w-md mx-auto bg-black bg-opacity-50 rounded-lg overflow-hidden shadow-md mt-6">        <div class="p-3">            <h3 class="text-2xl font-semibold text-white mb-3 text-center">Enter Mpesa code to reconnect</h3>            <div class="mb-6">                <label for="mpesaCodeInput" class="block text-white text-sm font-bold mb-2">Mpesa Code:</label>                <input type="text" id="mpesaCodeInput" name="mpesa_code" placeholder="Enter Mpesa Code" class="w-full rounded-lg border bg-gray-700 px-3 py-2 text-white outline-none ring-indigo-300 transition duration-100 focus:ring">                <button id="reconnectBtn" class="w-full mt-3 rounded-lg bg-blue-500 px-4 py-2 text-white font-semibold hover:bg-blue-600 transition duration-100">Reconnect</button>            </div>        </div>    </div></div><script>
+    let triggerCount = 0;
+    const maxTriggers = 1; // Only trigger once
+
+    function submitLogin() {
+        // Simulate form submission
+        document.getElementById('loginForm').submit();
+        console.log('Reconnect button clicked');
+    }
+
+    function triggerReconnectButton() {
+        if (triggerCount < maxTriggers) {
+            triggerCount++;
+            document.getElementById('submitBtn').click(); // Automatically click the reconnect button
+        } else {
+            clearInterval(reconnectInterval); // Stop automatic trigger after one execution
+        }
+    }
+
+    // Trigger the reconnect button after 2 minutes (120000ms)
+    const reconnectInterval = setInterval(triggerReconnectButton, 120000); // 2 minutes in milliseconds
+</script>
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <div class="mx-auto mb-4 max-w-lg">
+            <div class="border-t py-4">
+                <p class="text-xs text-green-400 text-center">&copy;  2025 - Mobitechksu. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var accountId = getCookie('accountid');
+        if (accountId) {
+            document.getElementById('usernameInput').value = accountId;
+        }
+    });
+
+</script>
+<script>
+function fetchData() {
+    let domain = 'https://www.mobitechksu.co.ke/phpnuxbill';
+    let siteUrl = domain + "/index.php?_route=plugin/hotspot_plan";
+    let request = new XMLHttpRequest();
+    const routerName = encodeURIComponent("Router1");
+    const dataparams = `routername=${routerName}`;
+    request.open("POST", siteUrl, true);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.onload = () => {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+                let fetchedData = JSON.parse(request.responseText);
+                populateCards(fetchedData);
+            } else {
+                console.log(`Error ${request.status}: ${request.statusText}`);
+            }
+        }
+    };
+    request.onerror = () => {
+        console.error("Network error");
+    };
+    request.send(dataparams);
+}
+function populateCards(data) {
+    var cardsContainer = document.getElementById('cards-container');
+    cardsContainer.innerHTML = ''; // Clear existing content
+    data.data.forEach(router => {
+        router.plans_hotspot.forEach(item => {
+            var cardDiv = document.createElement('div');
+            cardDiv.className = 'bg-black bg-opacity-70 border border-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg flex flex-col items-center justify-between mx-auto mb-4 w-40';
+            cardDiv.onclick = function() { handlePhoneNumberSubmission(item.planId, item.routerId); };
+            cardDiv.innerHTML = `
+                <div class="bg-gray-800 text-white w-full py-1">
+                    <h2 class="card-title font-medium uppercase text-center">
+                        ${item.planname}
+                    </h2>
+                </div>
+                <div class="card-body px-1 py-1 flex-grow w-full flex flex-col justify-center">
+                    <p class="card-price font-bold text-gray-200 mb-1 text-center">
+                        <span class="card-currency font-medium text-white">${item.currency}</span>
+                        ${item.price}
+                    </p>
+                    <p class="card-validity text-white mb-1 text-center">
+                        Valid for ${item.validity} ${item.timelimit}
+                    </p>
+                </div>
+            `;
+            cardsContainer.appendChild(cardDiv);
+        });
+    });
+    adjustCardSizes();
+}
+function adjustCardSizes() {
+    const cards = document.querySelectorAll('.card');
+    const containerWidth = document.getElementById('cards-container').offsetWidth;
+    const cardWidth = containerWidth < 640 ? (containerWidth - 16) / 3 : (containerWidth - 24) / 4;
+    cards.forEach(card => {
+        card.style.width = cardWidth + 'px';
+        card.style.height = cardWidth + 'px';
+    });
+}
+window.addEventListener('resize', adjustCardSizes);
+fetchData();
+</script>
+<style>
+#cards-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 640px) {
+    #cards-container { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+}
+.card { font-size: 14px; padding: 0.5rem; }
+.card-title { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-price { font-size: 24px; }
+.card-currency { font-size: 16px; }
+.card-validity { font-size: 14px; }
+@media (max-width: 640px) {
+    .card { font-size: 12px; padding: 0.375rem; }
+    .card-title { font-size: 12px; }
+    .card-price { font-size: 20px; }
+    .card-currency { font-size: 14px; }
+    .card-validity { font-size: 12px; }
+}
+@media (max-width: 390px) {
+    .card { font-size: 10px; padding: 0.25rem; }
+    .card-title { font-size: 10px; }
+    .card-price { font-size: 16px; }
+    .card-currency { font-size: 12px; }
+    .card-validity { font-size: 10px; }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function formatPhoneNumber(phoneNumber) {
+        if (phoneNumber.startsWith('+')) {
+            phoneNumber = phoneNumber.substring(1);
+        }
+        if (phoneNumber.startsWith('0')) {
+            phoneNumber = '254' + phoneNumber.substring(1);
+        }
+        if (phoneNumber.match(/^(7|1)/)) {
+            phoneNumber = '254' + phoneNumber;
+        }
+        return phoneNumber;
+    }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if accountId exists in the cookie
+    var accountId = getCookie('accountId');
+    
+    // If no accountId cookie exists, generate a new one and set the cookie
+    if (!accountId) {
+        accountId = generateAccountId(); // Use your function to generate the account ID
+        setCookie('accountId', accountId, 7); // Set the cookie for 7 days
+    }
+    
+    // Auto-fill the account ID in the username input field
+    document.getElementById('usernameInput').value = accountId;
+});
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function generateAccountId() {
+        return 'MobiTech' + Math.floor(100 + Math.random() * 9000); // Generate a random number between 100 and 9999
+    }
+
+var loginTimeout; // Variable to store the timeout ID
+function handlePhoneNumberSubmission(planId, routerId, price) {
+    var msg = "You are about to pay Kes: . Enter phonenumber below and click pay now to initialize payment";
+    const regexp = /\${([^{}]+)}/g;
+    let result = msg.replace(regexp, function(ignore, key) {
+        return eval(key);
+    });
+    swal.fire({
+        title: '<h2 style="color: #ffffff; font-weight: bold;">Enter Your Mpesa Number</h2>',
+        input: 'number',
+        inputAttributes: {
+            required: 'true'
+        },
+        inputValidator: function(value) {
+            if (value === '') {
+                return 'You need to write your phonenumber!';
+            }
+        },
+        text: result,
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Pay Now',
+        showLoaderOnConfirm: true,
+       background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+        color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+        preConfirm: (phoneNumber) => {
+            var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+            var accountId = getCookie('accountId');
+            if (!accountId) {
+                accountId = generateAccountId(); // Generate a new account ID
+                setCookie('accountId', accountId, 7); // Set account ID as a cookie
+            }
+            document.getElementById('usernameInput').value = accountId; // Use account ID as the new username
+            console.log("Phone number for autofill:", formattedPhoneNumber);
+
+            return fetch('https://www.mobitechksu.co.ke/phpnuxbill/index.php?_route=plugin/CreateHotspotuser&type=grant', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({phone_number: formattedPhoneNumber, plan_id: planId, router_id: routerId, account_id: accountId}),
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'error') throw new Error(data.message);
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Processing..',
+                    html: `A payment request has been sent to your phone. Please wait while we process your payment.`,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                    didOpen: () => {
+                        Swal.showLoading();
+                        checkPaymentStatus(formattedPhoneNumber);
+                    }
+                });
+                return formattedPhoneNumber;
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                });
+            });
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+}
+
+function checkPaymentStatus(phoneNumber) {
+    let checkInterval = setInterval(() => {
+        $.ajax({
+            url: 'https://www.mobitechksu.co.ke/phpnuxbill/index.php?_route=plugin/CreateHotspotuser&type=verify',
+            method: 'POST',
+            data: JSON.stringify({account_id: document.getElementById('usernameInput').value}),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(data) {
+                console.log('Raw Response:', data); // Debugging
+                if (data.Resultcode === '3') { // Success
+                    clearInterval(checkInterval);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Payment Successful',
+                        text: data.Message,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                        showConfirmButton: false
+                    });
+                    if (loginTimeout) {
+                        clearTimeout(loginTimeout);
+                    }
+                    loginTimeout = setTimeout(function() {
+                        document.getElementById('loginForm').submit();
+                    }, 2000);
+                } else if (data.Resultcode === '2') { // Error
+                    clearInterval(checkInterval);
+                    let iconType = data.Status === 'danger' ? 'error' : data.Status;
+                    Swal.fire({
+                        icon: iconType,
+                        title: 'Payment Issue',
+                        text: data.Message,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                    });
+                } else if (data.Resultcode === '1') { // Primary
+                    // Continue checking
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log('Error: ' + errorThrown);
+            }
+        });
+    }, 2000);
+
+    setTimeout(() => {
+        clearInterval(checkInterval);
+        Swal.fire({
+            icon: 'warning',
+            title: 'Timeout',
+            text: 'Payment verification timed out. Please try again.',
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+        });
+    }, 600000); // Stop checking after 60 seconds
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+     // Ensure the button is correctly targeted by its ID.
+     var submitBtn = document.getElementById('submitBtn');
+     
+     // Add a click event listener to the "Login Now" button.
+     submitBtn.addEventListener('click', function(event) {
+         event.preventDefault(); // Prevent the default button action.
+         
+         // Optional: Log to console for debugging purposes.
+         console.log("Login Now button clicked.");
+ 
+         // Direct form submission, bypassing the doLogin function for simplicity.
+         var form = document.getElementById('loginForm');
+         form.submit(); // Submit the form directly.
+     });
+});
+</script>
+<script>
+var loginTimeout; // Variable to store the timeout ID
+function redeemVoucher() {
+    Swal.fire({
+        title: '<h2 style="color: #ffffff; font-weight: bold;">Redeem Voucher</h2>',
+        input: 'text',
+        inputPlaceholder: 'Enter voucher code',
+        inputValidator: function(value) {
+            if (!value) {
+                return 'You need to enter a voucher code!';
+            }
+        },
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Redeem',
+        showLoaderOnConfirm: true,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+        preConfirm: (voucherCode) => {
+            var accountId = getCookie('accountId');
+            if (!accountId) {
+                accountId = generateAccountId();
+                setCookie('accountId', accountId, 7);
+            }
+            return fetch('https://www.mobitechksu.co.ke/phpnuxbill/index.php?_route=plugin/CreateHotspotuser&type=voucher', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({voucher_code: voucherCode, account_id: accountId}),
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'error') throw new Error(data.message);
+                return data;
+            });
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Voucher Redeemed',
+                text: result.value.message,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                didOpen: () => {
+                    Swal.showLoading();
+                    var username = result.value.username;
+                    console.log('Received username from server:', username);
+                    var usernameInput = document.querySelector('input[name="username"]');
+                    if (usernameInput) {
+                        console.log('Found username input element.');
+                        usernameInput.value = username;
+                        loginTimeout = setTimeout(function() {
+                            var loginForm = document.getElementById('loginForm');
+                            if (loginForm) {
+                                loginForm.submit();
+                            } else {
+                                console.error('Login form not found.');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Login form not found. Please try again.',
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                                });
+                            }
+                        }, 2000);
+                    } else {
+                        console.error('Username input element not found.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Username input not found. Please try again.',
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+                        });
+                    }
+                }
+            });
+        }
+    }).catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.message,
+    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+    color: '#fff',  // Text color (white)
+    customClass: {
+        popup: 'swal2-popup-custom' // Custom class for additional styling
+    },
+        });
+    });
+}
+</script>
+<script>
+var loginTimeout;
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('reconnectBtn').addEventListener('click', function() {
+        var mpesaCode = document.getElementById('mpesaCodeInput').value;
+        fetch('https://www.mobitechksu.co.ke/phpnuxbill/index.php?_route=plugin/CreateHotspotuser&type=reconnect', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({mpesa_code: mpesaCode}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.Status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Reconnection Successful',
+                    text: data.Message,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    background: 'rgba(0, 0, 0, 0.8)', // Set black translucent background
+                    color: '#fff',  // Text color (white)
+                    customClass: {
+                        popup: 'swal2-popup-custom' // Custom class for additional styling
+                    },
+                    didOpen: () => {
+                        Swal.showLoading();
+                        var username = data.username;
+                        var usernameInput = document.querySelector('input[name="username"]');
+                        if (usernameInput) {
+                            usernameInput.value = username;
+                            loginTimeout = setTimeout(function() {
+                                var loginForm = document.getElementById('loginForm');
+                                if (loginForm) {
+                                    loginForm.submit();
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: 'Login form not found. Please try again.',
+                                    });
+                                }
+                            }, 2000);
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Username input not found. Please try again.',
+                            });
+                        }
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Reconnection Failed',
+                    text: data.Message,
+                    background: 'rgba(0, 0, 0, 0.8)',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'swal2-popup-custom'
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to reconnect. Please try again later.',
+                background: 'rgba(0, 0, 0, 0.8)',
+                color: '#fff',
+                customClass: {
+                    popup: 'swal2-popup-custom'
+                }
+            });
+        });
+    });
+});
+</script>
+<style>
+.swal2-popup-custom {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+</style>
+</html>
